@@ -1,0 +1,117 @@
+﻿@model IEnumerable<EmployeeDetails.Models.Employee>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@if (TempData["InfoMessage"] != null)
+{
+    <div class="alert alert-info">
+        <strong>Info</strong> @TempData["InfoMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>&times; x</span>
+        </button>
+    </div>
+}
+else if (TempData["SucccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>SUCCESS</strong> @TempData["SuccessMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>x</span>
+        </button>
+    </div>
+}
+else if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <strong></strong> @TempData["ErrorMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span></span>
+        </button>
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Add new employee", "Create",null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Empname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Empcode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Joiningdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DoB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aadhaar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Presentaddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.School)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.College)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Highereducation)
+        </th>
+        <th>ACTIONS</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empcode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Joiningdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aadhaar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Presentaddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.School)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.College)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Highereducation)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Empid }, new {@class = "btn btn-primary" })   
+                @*@Html.ActionLink("Details", "Details", new { id = item.Empid }, new { @class = "btn btn-success" })*@ 
+                @Html.ActionLink("Delete", "Delete", new { id = item.Empid }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
