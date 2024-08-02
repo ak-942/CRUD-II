@@ -1,117 +1,81 @@
-﻿@model IEnumerable<EmployeeDetails.Models.Employee>
+@model IEnumerable<EmployeeDetails.Models.Employee>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Employee Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Employee Details</h2>
 
 @if (TempData["InfoMessage"] != null)
 {
-    <div class="alert alert-info">
-        <strong>Info</strong> @TempData["InfoMessage"]
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <strong>Info:</strong> @TempData["InfoMessage"]
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span>&times; x</span>
+            <span aria-hidden="true">&times;</span>
         </button>
     </div>
 }
-else if (TempData["SucccessMessage"] != null)
+else if (TempData["SuccessMessage"] != null)
 {
-    <div class="alert alert-success">
-        <strong>SUCCESS</strong> @TempData["SuccessMessage"]
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success:</strong> @TempData["SuccessMessage"]
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span>x</span>
+            <span aria-hidden="true">&times;</span>
         </button>
     </div>
 }
 else if (TempData["ErrorMessage"] != null)
 {
-    <div class="alert alert-danger">
-        <strong></strong> @TempData["ErrorMessage"]
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error:</strong> @TempData["ErrorMessage"]
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span></span>
+            <span aria-hidden="true">&times;</span>
         </button>
     </div>
 }
 
 <p>
-    @Html.ActionLink("Add new employee", "Create",null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Add employee", "Create", null, new { @class = "btn btn-primary" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Empname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Empcode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Joiningdate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DoB)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Mobile)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Aadhaar)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Presentaddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.School)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.College)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Highereducation)
-        </th>
-        <th>ACTIONS</th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Empname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Empcode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Joiningdate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DoB)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mobile)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Aadhaar)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Presentaddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.School)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.College)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Highereducation)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Empid }, new {@class = "btn btn-primary" })   
-                @*@Html.ActionLink("Details", "Details", new { id = item.Empid }, new { @class = "btn btn-success" })*@ 
-                @Html.ActionLink("Delete", "Delete", new { id = item.Empid }, new { @class = "btn btn-danger" })
-            </td>
+            <th class="col-empname">@Html.DisplayNameFor(model => model.Empname)</th>
+            <th class="col-empcode">@Html.DisplayNameFor(model => model.Empcode)</th>
+            <th class="col-joiningdate">@Html.DisplayNameFor(model => model.Joiningdate)</th>
+            <th class="col-dob">@Html.DisplayNameFor(model => model.DoB)</th>
+            <th class="col-mobile">@Html.DisplayNameFor(model => model.Mobile)</th>
+            <th class="col-aadhaar">@Html.DisplayNameFor(model => model.Aadhaar)</th>
+            <th class="col-presentaddress">@Html.DisplayNameFor(model => model.Presentaddress)</th>
+            <th class="col-school">@Html.DisplayNameFor(model => model.School)</th>
+            <th class="col-college">@Html.DisplayNameFor(model => model.College)</th>
+            <th class="col-highereducation">@Html.DisplayNameFor(model => model.Highereducation)</th>
+            <th class="col-actions">ACTIONS</th>
         </tr>
-    }
-
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Empname)</td>
+                <td>@Html.DisplayFor(modelItem => item.Empcode)</td>
+                <td>@Html.DisplayFor(modelItem => item.Joiningdate)</td>
+                <td>@Html.DisplayFor(modelItem => item.DoB)</td>
+                <td>@Html.DisplayFor(modelItem => item.Mobile)</td>
+                <td>@Html.DisplayFor(modelItem => item.Aadhaar)</td>
+                <td>@Html.DisplayFor(modelItem => item.Presentaddress)</td>
+                <td>@Html.DisplayFor(modelItem => item.School)</td>
+                <td>@Html.DisplayFor(modelItem => item.College)</td>
+                <td>@Html.DisplayFor(modelItem => item.Highereducation)</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Empid }, new { @class = "btn btn-primary btn-sm" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Empid }, new { @class = "btn btn-danger btn-sm ml-1" })
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
